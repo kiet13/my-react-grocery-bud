@@ -1,0 +1,92 @@
+@import "variables";
+@import "mixins";
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;800;900&display=swap');
+
+
+html {
+  font-size: 62.5%; // 10px
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // 9px
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; // 8px
+  }
+
+  @include respond(phone) {
+    font-size: 50%; // 6px
+  }
+
+  @include respond(big-desktop) {
+    font-size: 100%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.6rem;
+  color: $clr-grey-1;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 10rem 0;
+  background-color: $clr-grey-10;
+}
+
+input[type="text"],
+input[type="submit"] {
+  font: inherit;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+}
+
+input[type="text"] {
+  padding: 0.8rem 1.5rem;
+  color: $clr-grey-5;
+  background-color: $clr-grey-10;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+}
+
+input[type="submit"] {
+  padding: 0.8rem 0;
+  color: $clr-black;
+  background-color: $clr-primary-8;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  letter-spacing: .1rem;
+  cursor: pointer;
+  transition: all .4s;
+  &:hover {
+    color: $clr-white;
+    background-color: $clr-primary-5;
+  }
+}
+
+@for $i from 1 to 10 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+  .my-#{$i} {
+    margin: #{$i}rem;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i}rem;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i}rem;
+  }
+}
