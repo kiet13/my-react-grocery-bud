@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styles from './GroceryBudBuilder.module.scss';
 import GroceryInput from '../components/GroceryInput/GroceryInput';
 import GroceryList from '../components/GroceryList/GroceryList';
@@ -18,7 +18,11 @@ export default function GroceryBudBuilder() {
   const [onEditing, setOnEditing] = useState(false);
   const [inputItem, setInputItem] = useState({ id: nanoid(), name: ""});
   const [alert, setAlert] = useState({ show: false, msg: "", type: ""});
+  const inputEl = useRef(null);
 
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
   useEffect(() => {
     localStorage.setItem('itemList', JSON.stringify(itemList));
   }, [itemList]);
@@ -95,6 +99,7 @@ export default function GroceryBudBuilder() {
         onGroceryEdit={onEditing}
         onGroceryChange={handleInputChange}
         groceryName={inputItem.name}
+        inputRef={inputEl}
       />
       <Alert show={alert.show} msg={alert.msg} type={alert.type} />
       <GroceryList groceryList={itemList} itemDeleted={handleItemDelete} itemEdited={handleItemEditing} />

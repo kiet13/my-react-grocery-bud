@@ -12,6 +12,7 @@ export default function GroceryInput(props) {
         placeholder="e.g: eggs"
         value={props.groceryName}
         onChange={(e) => props.onGroceryChange(e)}
+        ref={props.inputRef}
       />
       <input type="submit" value={props.onGroceryEdit ? "Edit" : "Submit"} />
     </form>
