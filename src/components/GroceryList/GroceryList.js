@@ -12,7 +12,7 @@ export default function GroceryList(props) {
     />
   )
   return (
-    <div className={[styles.GroceryList, "mt-2"].join(' ')}>
+    <div className={styles.GroceryList}>
       {groceryList}
     </div>
   )
