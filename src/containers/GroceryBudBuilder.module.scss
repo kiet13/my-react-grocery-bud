@@ -23,4 +23,30 @@
     font-weight: 800;
     text-align: center;
   }
+
+  .Clear {
+    font: inherit;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    padding: 0.8rem 1rem;
+    color: $clr-black;
+    background-color: $clr-red-light;
+    border-radius: .5rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    transition: all .4s;
+  
+    &:hover {
+      color: $clr-white;
+      background-color: $clr-red-dark;
+    }
+  }
+
+  .Clear:disabled {
+    cursor: not-allowed;
+    color: $clr-black;
+    background-color: $clr-grey-8;
+  }
 }
+

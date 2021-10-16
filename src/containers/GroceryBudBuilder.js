@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './GroceryBudBuilder.module.scss';
 import GroceryInput from '../components/GroceryInput/GroceryInput';
 import GroceryList from '../components/GroceryList/GroceryList';
 import { nanoid } from 'nanoid';
 
 export default function GroceryBudBuilder() {
-  const [itemList , setItemList] = useState([]);
+  const [itemList , setItemList] = useState(JSON.parse(localStorage.getItem('itemList')));
   const [onEditing, setOnEditing] = useState(false);
   const [inputItem, setInputItem] = useState({ id: nanoid(), name: ""});
+
+  useEffect(() => {
+    localStorage.setItem('itemList', JSON.stringify(itemList));
+  }, [itemList]);
 
   const handleGrocerySubmit = (event, newItemName) => {
     event.preventDefault();
@@ -50,6 +54,8 @@ export default function GroceryBudBuilder() {
     setInputItem(itemList[editIndex]);
   }
 
+  
+
   return (
     <div className={styles.GroceryBudBuilder}>
       <h1>Grocery Bud</h1>
@@ -60,6 +66,13 @@ export default function GroceryBudBuilder() {
         groceryName={inputItem.name}
       />
       <GroceryList groceryList={itemList} itemDeleted={handleItemDelete} itemEdited={handleItemEditing} />
+      <button
+        className={styles.Clear}
+        disabled={itemList.length === 0 || onEditing}
+        onClick={() => setItemList([])}
+      >
+        Clear All
+      </button>
     </div>
   )
 }
