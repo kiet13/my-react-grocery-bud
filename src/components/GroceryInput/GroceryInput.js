@@ -1,30 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styles from './GroceryInput.module.scss';
 
 export default function GroceryInput(props) {
-  const [groceryName, setGroceryName] = useState("");
-
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-    props.onGrocerySubmit(groceryName);
-    setGroceryName("");
-  }
-  const handleInputChange = (event) => {
-    // TODO: validate input value
-    setGroceryName(event.target.value);
-  }
 
   return (
-    <form className={[styles.GroceryInput, "mt-2"].join(' ')} onSubmit={handleInputSubmit}>
+    <form className={[styles.GroceryInput, "mt-2"].join(' ')} onSubmit={(event) => props.onGrocerySubmit(event, props.groceryName)}>
       <input 
         type="text"
         name="txtGroceryItem"
         id="txtGroceryItem"
         placeholder="e.g: eggs"
-        value={groceryName}
-        onChange={handleInputChange}
+        value={props.groceryName}
+        onChange={(e) => props.onGroceryChange(e)}
       />
-      <input type="submit" value="Submit" />
+      <input type="submit" value={props.onGroceryEdit ? "Edit" : "Submit"} />
     </form>
   )
 }
